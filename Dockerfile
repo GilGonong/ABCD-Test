@@ -31,6 +31,9 @@ COPY /app /srv/shiny-server/
 EXPOSE 80
 
 # Copy further configuration files into the Docker image
-COPY shiny-server.sh /usr/bin/shiny-server.sh
+COPY shiny-server.sh /usr/bin/
 
-CMD ["/usr/bin/shiny-server.sh"]
+#CMD ["/usr/bin/shiny-server.sh"]
+
+ENTRYPOINT ["/usr/bin/shiny-server.sh"]
+CMD ["bash"]
