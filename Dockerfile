@@ -10,7 +10,8 @@ RUN apt-get update && apt-get install -y \
     libcurl4-gnutls-dev \
     libcairo2-dev/unstable \
     libxt-dev \
-    libssl-dev
+    libssl-dev \
+    dos2unix
 
 # Download and install ShinyServer (latest version)
 RUN wget --no-verbose https://s3.amazonaws.com/rstudio-shiny-server-os-build/ubuntu-12.04/x86_64/VERSION -O "version.txt" && \
@@ -32,6 +33,7 @@ EXPOSE 80
 
 # Copy further configuration files into the Docker image
 COPY shiny-server.sh /usr/bin/
+RUN dos2unix /usr/bin/shiny-server.sh && chmod 777 /usr/bin/shiny-server.sh
 
 #CMD ["/usr/bin/shiny-server.sh"]
 
